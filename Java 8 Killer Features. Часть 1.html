@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)http://devcolibri.com/4137 -->
+<html lang="ru-RU"><head charset="uft-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	
+	<link href="http://devcolibri.com/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link rel="alternate" type="application/rss+xml" title="DevColibri RSS Feed" href="http://devcolibri.com/feed">
+
+	<!-- Bootstrap -->
+	<link href="./Java 8 Killer Features. Часть 1_files/bootstrap.min.css" rel="stylesheet">
+	<link href="./Java 8 Killer Features. Часть 1_files/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="./Java 8 Killer Features. Часть 1_files/style.css" rel="stylesheet">
+
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feedburner.google.com/fb/a/mailverify?uri=devcolibri">
+	<link rel="pingback" href="http://www.devcolibri.com/xmlrpc.php">
+
+	<title>Java 8 Killer Features. Часть 1</title>
+
+<script async="" src="./Java 8 Killer Features. Часть 1_files/analytics.js"></script><script type="text/javascript" async="" src="./Java 8 Killer Features. Часть 1_files/ga.js"></script><script async="" src="./Java 8 Killer Features. Часть 1_files/analytics.js"></script><script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/jquery.js"></script><style type="text/css"></style>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/q2w3-fixed-widget.min.js"></script>
+<link rel="stylesheet" href="./Java 8 Killer Features. Часть 1_files/wp-page-numbers.css" type="text/css" media="screen">
+<!-- BEGIN GADWP v4.3.10 Universal Tracking - https://deconf.com/google-analytics-dashboard-wordpress/ -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-35842244-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- END GADWP Universal Tracking -->
+
+
+<!-- All in One SEO Pack 2.2.4 by Michael Torbert of Semper Fi Web Design[876,883] -->
+<link rel="author" href="https://plus.google.com/u/1/113416826782292989820">
+<meta name="description" content="Не так давно зарелизилась Java 8 вот о ней я и хочу рассказать в данном посте. Мы рассмотрим все нововведения на примерах.">
+
+<meta name="keywords" content="java 8, functional interfaces, функциональные интерфейсы, lambda выражения,  default методы, Ссылки на методы и конструкторы,java se">
+
+<link rel="canonical" href="./Java 8 Killer Features. Часть 1_files/Java 8 Killer Features. Часть 1.html">
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-35842244-1']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+<!-- /all in one seo pack -->
+<link rel="stylesheet" type="text/css" href="./Java 8 Killer Features. Часть 1_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Java 8 Killer Features. Часть 1_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+
+<!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="./Java 8 Killer Features. Часть 1_files/wp-page-numbers.css" type="text/css" media="screen">
+<!-- BEGIN GADWP v4.3.10 Universal Tracking - https://deconf.com/google-analytics-dashboard-wordpress/ -->
+
+<!-- END GADWP Universal Tracking -->
+
+
+<!-- Debug Warning: All in One SEO Pack meta data was included again from wp_head filter. Called 2 times! -->
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35842244-1', 'devcolibri.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+
+
+
+<body>
+
+<div class="main">
+	<div class="row-fluid">
+		<div class="span12">
+			
+			<div style="margin: 0 0 15px 0;">
+				<a href="http://devcolibri.com/" alt="Совсем скоро сайт будет перерожден!"><img src="./Java 8 Killer Features. Часть 1_files/repair-logo.png" width="320"></a>
+
+				<div class="navbar">
+		    			<div class="navbar-inner">
+		    		
+						<ul class="nav">
+							<li><a href="http://devcolibri.com/">Главная</a></li>
+													</ul>
+
+						<form role="search" id="demo-b" class="navbar-search pull-right" method="get" action="http://devcolibri.com/">
+							<input type="search" name="s" placeholder="Search">
+						</form>
+					</div>
+			
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+	<div class="row-fluid">
+	  	<!--  this left sidebar-->
+	  	<div class="span10 fix-main">
+												<a href="https://www.youtube.com/user/devcolibri" target="_blank">
+  						<img src="./Java 8 Killer Features. Часть 1_files/banner-top.png">
+					</a>
+	  				<div class="well" style="background-color:#ffffff;">
+						<center><h2>Java 8 Killer Features. Часть 1</h2></center>
+			<p>Не так давно&nbsp;зарелизилась&nbsp;Java&nbsp;8 вот о ней я и хочу&nbsp;рассказать&nbsp;в&nbsp;данном&nbsp;посте. Мы рассмотрим все нововведения на примерах.</p>
+<p><span id="more-4137"></span></p>
+<p>Уже давно по интернету ходили примеры c теми фишками который попадут в Java 8 но никто до конца не знал что и как будет в Java 8 все что было на слуху это&nbsp;Lambda выражения. Сейчас я постараюсь более понятно показать все новенькое в Java 8.</p>
+<p>&nbsp;</p>
+<h2>Что мы узнаем нового в Java 8?</h2>
+<p><a href="http://devcolibri.com/4137#t1">1.&nbsp;Default методы для Interface</a></p>
+<p><a href="http://devcolibri.com/4137#t2">2.&nbsp;Lambda выражения</a></p>
+<p><a href="http://devcolibri.com/4137#t3">3.&nbsp;Функциональные Интерфейсы</a></p>
+<p><a href="http://devcolibri.com/4137#t4">4. Ссылки на методы и конструкторы</a></p>
+<p><a href="http://devcolibri.com/4137#t5">5.&nbsp;Lambda Scopes</a></p>
+<p>&nbsp;</p>
+<h2 id="t1">1. Default методы для Interface</h2>
+<p>Довольно такие неплохому изменению подверглись Interfaces. Сразу пример:</p>
+<div><div id="highlighter_793785" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2 highlighted">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">interface</code> <code class="java plain">PeopleBirthday {</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">String getFullName(String firstName, String lastName);</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">default</code> <code class="java keyword">int</code> <code class="java plain">getAge(</code><code class="java keyword">int</code> <code class="java plain">yearBirthday){</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java value">2014</code> <code class="java plain">- yearBirthday;</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Как видите&nbsp;Java&nbsp;8 позволяет нам&nbsp;добавлять&nbsp;не абстрактные реализации в интерфейс.</p>
+<p>Сразу же появляется вопрос в чем отличие между абстрактным методом и&nbsp;default&nbsp;методом в интерфейсе?</p>
+<p>Как известно Абстрактные классы содержащие&nbsp;abstract&nbsp;методы могут хранить состояние, а точнее переменные, в свою очередь интерфейсам это не&nbsp;под силу, максимум что могут интерфейсы это хранить константы.</p>
+<p>Теперь когда вы реализуете интерфейс <strong>PeopleBirthday</strong>, то вы будите обязаны реализовать только метод getFullName(…) рассмотрим на примере:</p>
+<p><img class="alignnone size-full wp-image-4159" src="./Java 8 Killer Features. Часть 1_files/4137_1.png" alt="" width="722" height="356"></p>
+<p>Когда мы попытаемся реализовать интерфейс нам автоматически&nbsp;сгенерирует&nbsp;структуру только первого метода&nbsp;<strong>getFullName</strong>() так как он не является с <strong>default</strong>&nbsp;реализацией. Ну и&nbsp;собственно&nbsp;реализация:</p>
+<div><div id="highlighter_888295" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">PeopleBirthdayImpl </code><code class="java keyword">implements</code> <code class="java plain">PeopleBirthday {</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">String getFullName(String firstName, String lastName) {</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">firstName + </code><code class="java string">" "</code> <code class="java plain">+ lastName;</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number7 index6 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Теперь &nbsp;проверим:</p>
+<div><div id="highlighter_94386" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">Main {</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">static</code> <code class="java plain">PeopleBirthday peopleBirthday = </code><code class="java keyword">new</code> <code class="java plain">PeopleBirthdayImpl();</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String[] args) {</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"-- Default Method Interface --"</code><code class="java plain">);</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(peopleBirthday.getFullName(</code><code class="java string">"Alexander"</code><code class="java plain">, </code><code class="java string">"Barchuk"</code><code class="java plain">));</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(peopleBirthday.getAge(</code><code class="java value">1992</code><code class="java plain">));</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Рузультат:</p>
+<div><div id="highlighter_836644" class="syntaxhighlighter  shell"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="shell plain">-- Default Method Interface --</code></div><div class="line number2 index1 alt1"><code class="shell plain">Alexander Barchuk</code></div><div class="line number3 index2 alt2"><code class="shell plain">22</code></div></div></td></tr></tbody></table></div></div>
+<p>&nbsp;</p>
+<h2 id="t2">2. Lambda выражения</h2>
+<p>На моё мнение&nbsp;<strong>Lambda&nbsp;Expressions</strong>&nbsp;— это штука вызывающая —&nbsp;<strong>Вау&nbsp;эффект</strong>. Начну с простого и полезного примера.</p>
+<p>Представьте себе, что у вас есть список слов, который нужно отсортировать. В <a title="Collection. Как создать отсортированную коллекцию?" href="http://devcolibri.com/3717" target="_blank">этом уроке</a> я показывал как сортировать список объектов. Но мы рассмотрим на примере строк.</p>
+<p>У нас есть следующий код:</p>
+<div><div id="highlighter_634418" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2 highlighted">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">SortListString {</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java plain">List&lt;String&gt; sort(List&lt;String&gt; st){</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Collections.sort(st, </code><code class="java keyword">new</code> <code class="java plain">Comparator&lt;String&gt;() {</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">int</code> <code class="java plain">compare(String a, String b) {</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">a.compareTo(b);</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">});</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">st;</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>В результате использования сортировки мы получим следующий результат:</p>
+<div><div id="highlighter_726723" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String[] args) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"\n-- Lambda Expressions: Sort List --"</code><code class="java plain">);</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">List&lt;String&gt; st = Arrays.asList(</code><code class="java string">"Steve"</code><code class="java plain">, </code><code class="java string">"Alex"</code><code class="java plain">, </code><code class="java string">"Jim"</code><code class="java plain">, </code><code class="java string">"Bob"</code><code class="java plain">);</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"Before sort: "</code> <code class="java plain">+ st);</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"After sort: "</code> <code class="java plain">+ SortListString.sort(st));</code></div><div class="line number6 index5 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Результат:</p>
+<div><div id="highlighter_847569" class="syntaxhighlighter  shell"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="shell plain">Before </code><code class="shell functions">sort</code><code class="shell plain">: [Steve, Alex, Jim, Bob]</code></div><div class="line number2 index1 alt1"><code class="shell plain">After </code><code class="shell functions">sort</code><code class="shell plain">: [Alex, Bob, Jim, Steve]</code></div></div></td></tr></tbody></table></div></div>
+<p>Теперь давйте переделаем метод&nbsp;SortListString.<strong>sort</strong>(st) с использованием Lambda Expressions:</p>
+<p><img class="alignnone size-full wp-image-4170" src="./Java 8 Killer Features. Часть 1_files/4137_2f.png" alt="" width="678" height="406"></p>
+<p>В&nbsp;результате&nbsp;Intellij&nbsp;IDEA&nbsp;нам поправит наш код с использованием&nbsp;Lambda&nbsp;Expressions, но также вы&nbsp;можете&nbsp;сами написать&nbsp;данное&nbsp;выражение. Врезультате&nbsp;вы получите код метода уже с использованием&nbsp;Lambda&nbsp;выражения:</p>
+<div><div id="highlighter_791420" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java plain">List&lt;String&gt; sort(List&lt;String&gt; st){</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Collections.sort(st, (a, b) -&gt; a.compareTo(b));</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">st;</code></div><div class="line number4 index3 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Сравним:</p>
+<p><img class="alignnone size-full wp-image-4172" src="./Java 8 Killer Features. Часть 1_files/4137_3.png" alt="" width="1002" height="384"></p>
+<p>Но круто ведь :) Шесть строк кода вместить в одну.</p>
+<p>&nbsp;</p>
+<h2 id="t3">3.&nbsp;Функциональные Интерфейсы</h2>
+<p>Функциональные интерфейсы тесно связаны с&nbsp;Lambda&nbsp;выражениями, как? Это мы сейчас разберем.</p>
+<p>Каждому Lambda выражению соответствует тип, представленный интерфейсом. Именно этот интерфейс и называется <strong>Функциональным интерфейсом. </strong>Этот интерфейс должен содержать только один абстрактный метод (<em><strong>абстрактный метод</strong> — метод, который не имеет default реализации</em>).</p>
+<p>Скорее&nbsp;всего,&nbsp;вы&nbsp;уже подумали, как же это тупо, ведь я не всегда могу уследить и написать больше чем один метод. Согласен, но этого не&nbsp;будет,&nbsp;так как за этим будет следить специальная аннотация&nbsp;<strong>@FunctionalInterface.</strong></p>
+<p>Данная аннотация будет&nbsp;сигнализировать&nbsp;Java&nbsp;об&nbsp;ошибке,&nbsp;если вы&nbsp;попытаетесь&nbsp;написать больше одного абстрактного метода:</p>
+<div><div id="highlighter_397907" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2 highlighted">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2 highlighted"><code class="java color1">@FunctionalInterface</code></div><div class="line number2 index1 alt1"><code class="java keyword">public</code> <code class="java keyword">interface</code> <code class="java plain">Converter&lt;F, T&gt; {</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">T convert(F f);</code></div><div class="line number4 index3 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Вот что&nbsp;будет,&nbsp;если вы напишите более одного абстрактного метода в функциональном интерфейсе:</p>
+<p><img class="alignnone size-full wp-image-4194" src="./Java 8 Killer Features. Часть 1_files/4137_4fc.png" alt="" width="452" height="184"></p>
+<p>Пример использования <strong>Функционального Интерфейса</strong>:</p>
+<div><div id="highlighter_416805" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2 highlighted">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String[] args) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"\n-- Functional Interface Using --"</code><code class="java plain">);</code></div><div class="line number3 index2 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Converter&lt;String, Integer&gt; converter = (from) -&gt; Integer.valueOf(from);</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Integer convertAge = converter.convert(</code><code class="java string">"22"</code><code class="java plain">);</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"Age Convert: "</code> <code class="java plain">+ convertAge);</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"Type: "</code> <code class="java plain">+ convertAge.getClass().getTypeName());</code></div><div class="line number7 index6 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Результат:</p>
+<div><div id="highlighter_902108" class="syntaxhighlighter  shell"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="shell plain">-- Functional Interface Using --</code></div><div class="line number2 index1 alt1"><code class="shell plain">Age Convert: 22</code></div><div class="line number3 index2 alt2"><code class="shell plain">Type: java.lang.Integer</code></div></div></td></tr></tbody></table></div></div>
+<p>&nbsp;</p>
+<h2 id="t4">4. Ссылки на методы и конструкторы</h2>
+<p>Строку использования функционального интерфейса из предыдущего примера можно упростить с использованием ссылки на статический метод:</p>
+<div><div id="highlighter_970621" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">Converter&lt;String, Integer&gt; converter = (from) -&gt; Integer.valueOf(from);</code></div></div></td></tr></tbody></table></div></div>
+<p>Теперь давайте упростим эту строку используя ссылку на статический метод:</p>
+<div><div id="highlighter_374830" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">Converter&lt;String, Integer&gt; converter = Integer::valueOf;</code></div></div></td></tr></tbody></table></div></div>
+<p>Намного проще я думаю :)&nbsp;Java 8 позволяет нам передавать ссылки на методы или конструкторы.&nbsp;Для того чтобы передать ссылку на метод либо на конструктор необходимо использовать два двоиточия&nbsp;<strong>::</strong></p>
+<p>Давайте рассмотрим еще один пример для большего понимания:</p>
+<div><div id="highlighter_215651" class="syntaxhighlighter  actionscript3"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1 highlighted">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="actionscript3 keyword">public</code> <code class="actionscript3 keyword">static</code> <code class="actionscript3 keyword">void</code> <code class="actionscript3 plain">main(</code><code class="actionscript3 keyword">String</code><code class="actionscript3 plain">[] args) {</code></div><div class="line number2 index1 alt1"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">System.out.println(</code><code class="actionscript3 string">"\n-- Method and Constructor References --"</code><code class="actionscript3 plain">);</code></div><div class="line number3 index2 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">Something something = </code><code class="actionscript3 keyword">new</code> <code class="actionscript3 plain">Something();</code></div><div class="line number4 index3 alt1 highlighted"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">Converter&lt;</code><code class="actionscript3 keyword">String</code><code class="actionscript3 plain">, </code><code class="actionscript3 keyword">String</code><code class="actionscript3 plain">&gt; charConverter = something::startsWith;</code></div><div class="line number5 index4 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 keyword">String</code> <code class="actionscript3 plain">converted = charConverter.convert(</code><code class="actionscript3 string">"Java8"</code><code class="actionscript3 plain">);</code></div><div class="line number6 index5 alt1"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">System.out.println(</code><code class="actionscript3 string">"Result Char: "</code> <code class="actionscript3 plain">+ converted);</code></div><div class="line number7 index6 alt2"><code class="actionscript3 plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Теперь давайте посмотрим как передавать ссылку на конструктор. Для начало создадим обьект Person:</p>
+<div><div id="highlighter_41972" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">Person {</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">String firstName;</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">String lastName;</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">Person() {}</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">Person(String firstName, String lastName) {</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">this</code><code class="java plain">.firstName = firstName;</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">this</code><code class="java plain">.lastName = lastName;</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">String toString() {</code></div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java string">"Person{firstName: "</code><code class="java plain">+ firstName + </code><code class="java string">", lastName: "</code> <code class="java plain">+ lastName + </code><code class="java string">"}"</code><code class="java plain">;</code></div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Затем создаем функциональный интерфейс для создания Person:</p>
+<div><div id="highlighter_628243" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java color1">@FunctionalInterface</code></div><div class="line number2 index1 alt1"><code class="java keyword">public</code> <code class="java keyword">interface</code> <code class="java plain">PersonFactory&lt;P </code><code class="java keyword">extends</code> <code class="java plain">Person&gt; {</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">P create(String firstName, String lastName);</code></div><div class="line number4 index3 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p><span style="line-height: 1.5em;">Теперь рассмотрим, как передать ссылку на конструктор:</span></p>
+<div><div id="highlighter_86136" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2 highlighted">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String[] args) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"\n-- Constructor References --"</code><code class="java plain">);</code></div><div class="line number3 index2 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">PersonFactory&lt;Person&gt; personFactory = Person::</code><code class="java keyword">new</code><code class="java plain">;</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Person person = personFactory.create(</code><code class="java string">"Alexander"</code><code class="java plain">, </code><code class="java string">"Barchuk"</code><code class="java plain">);</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(person);</code></div><div class="line number6 index5 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Как видите ничего сложного нет, с помощью <strong>Person</strong>::<strong>new</strong> мы создали ссылку на конструктор и в зависимости от структуру метода <strong>create</strong>() с функционального интерфейса будет выбран соответствующий конструктор.</p>
+<p>&nbsp;</p>
+<h2 id="t5">5.&nbsp;Lambda Scopes (область видимости)</h2>
+<p>Кто&nbsp;помнит&nbsp;как получить доступ к переменной в&nbsp;анонимном&nbsp;объекте? Примерно так:</p>
+<div><div id="highlighter_927365" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">int</code> <code class="java plain">num = </code><code class="java value">1</code><code class="java plain">;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">new</code> <code class="java plain">Runnable() {</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">run() {</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">num = </code><code class="java value">2</code><code class="java plain">;</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number8 index7 alt1"><code class="java plain">};</code></div></div></td></tr></tbody></table></div></div>
+<p>Но при этом у нас не получится использовать переменную num так как она должна быть неизменимой и в этом случае мы получаем ошибку:</p>
+<p><img class="alignnone size-full wp-image-4199" src="./Java 8 Killer Features. Часть 1_files/4137_5.png" alt="" width="427" height="231"></p>
+<p>Для решения этой проблемы стоит сделать&nbsp;переменную&nbsp;num&nbsp;как статический (<strong>final</strong>)&nbsp;массив&nbsp;в нашем случае.</p>
+<p>Теперь&nbsp;вернемся к&nbsp;Lambda&nbsp;выражениям, доступ к переменным из лямбда выражений также можно&nbsp;поучать&nbsp;как и в случае с анонимными объектами выше.</p>
+<div><div id="highlighter_196577" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">final</code> <code class="java keyword">int</code> <code class="java plain">num = </code><code class="java value">1</code><code class="java plain">;</code></div><div class="line number2 index1 alt1"><code class="java plain">Converter&lt;Integer, String&gt; stringConverter = (from) -&gt; String.valueOf(from + num);</code></div></div></td></tr></tbody></table></div></div>
+<p>Но <strong>final</strong> в этом случае не обязательный и без него все будет работать, но при условии, что переменная в дальнейшем не будет меняться.</p>
+<p><img class="alignnone size-full wp-image-4200" src="./Java 8 Killer Features. Часть 1_files/4137_6.png" alt="" width="640" height="88"></p>
+<p>Внутри&nbsp;Lambda&nbsp;выражений запрещено обращаться к&nbsp;<strong>default</strong>&nbsp;методам. Если брать за пример метод&nbsp;default&nbsp;getAge(…), то это&nbsp;работать&nbsp;не будет.</p>
+<div><div id="highlighter_299018" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://devcolibri.com/4137#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">PeopleBirthday birthday = (a) -&gt; getAge( a + </code><code class="java value">10</code><code class="java plain">);</code></div></div></td></tr></tbody></table></div></div>
+<p>&nbsp;</p>
+<p>Продолжение: <a title="Java 8 Killer Features. Часть 2" href="http://devcolibri.com/4274">Java 8 Killer Features. Часть 2</a></p>
+<p>&nbsp;</p>
+<p><span style="line-height: 1.5em;">Статья написана с использованием материала&nbsp;</span><a style="line-height: 1.5em;" href="http://winterbe.com/posts/2014/03/16/java-8-tutorial/" target="_blank">winterbe.com</a><span style="line-height: 1.5em;">.</span></p>
+
+<div style="color: #8F8F8F; margin: 20px -15px 10px -15px; border-top: 1px solid #ABABAB; border-bottom: 1px solid #ABABAB; padding: 1px 8px 1px 8px; font-size: 11px;">
+Урок создан: 02 Апрель 2014 <span style="margin: 0 8px 0 8px;">|</span> Просмотров: 8313 <span style="margin: 0 8px 0 8px;">|</span> Автор: Александр Барчук <span style="margin: 0 8px 0 8px;">|</span> <a href="http://devcolibri.com/4137#myModal" role="button" data-toggle="modal">Правила перепечатки</a>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" style="width: 900px; margin-left: -450px;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Правила перепечатки сайта www.DevColibri.com</h3>
+  </div>
+  <div class="modal-body">
+    <p>Уважаемый посетитель проекта!</p>
+    <p>В этом документе, Вы можете узнать на каких условиях Вы сможете использовать материалы, сайта www.devcolibri.com на своих ресурсах, в своих рассылках и т.д. и т.п.</p>
+    <p>Вам разрешается свободно использовать в своих целях любой документ при соблюдении следующих условий:</p>
+    <p><strong>• Ссылка на сайт www.devcolibri.com</strong> или на сам урок который вы хотите использовать в своих целях в виде ссылки, а не в виде текста.</p>
+    <p><strong>• Содержание урока или статьи</strong> при перепечатке не должно подвергаться модификациям и переделке. Все уроки и статьи, размещенные на сайте, должны перепечатываться как есть. Вы не имеете права урезать, исправлять или иным образам коверкать републикуемый документ. Но если это жизненно важно, Вы можете обратиться к администратору проекта www.devcolibri.com по email. Без письменного согласия администратора, модифицировать документ запрещается!!!</p>
+    <p><strong>• В конце перепечатываемого документа</strong> Вы обязаны вставить ссылку на сайт www.devcolibri.com.</p>
+    <p><strong>• Ссылка на сайт</strong>, обязательно должна быть работоспособной (при нажатии человек должен выходить на сайт автора). Если Вы перепечатали какой-либо документ, обязательно проверьте ссылку на работоспособность.</p>
+    <p style="text-align: right;"><strong>С уважением, Администратор!<br>admin@devcolibri.com</strong></p>
+  </div>
+
+</div>
+</div>
+<a href="https://www.youtube.com/user/devcolibri" target="_blank">
+  <img src="./Java 8 Killer Features. Часть 1_files/banner-top.png">
+</a><br><br>
+
+							
+
+			<div class="well">
+				<p class="btn btn-success" id="btn-add-comment">Добавить комментарий</p>
+				
+
+								<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Добавить комментарий <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://devcolibri.com/4137#respond" style="display:none;">Отменить ответ</a></small></h3>
+									<form action="http://devcolibri.com/cp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes"><span id="email-notes">Ваш e-mail не будет опубликован.</span></p>							<p class="comment-form-author"><label for="author">Имя</label> <input id="author" name="author" type="text" value="" size="30"></p>
+<p class="comment-form-email"><label for="email">E-mail</label> <input id="email" name="email" type="text" value="" size="30" aria-describedby="email-notes"></p>
+<p class="comment-form-url"><label for="url">Сайт</label> <input id="url" name="url" type="text" value="" size="30"></p>
+												<p class="comment-form-comment"><label for="comment">Комментарий</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-describedby="form-allowed-tags" aria-required="true"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" class="submit" value="Отправить комментарий">
+							<input type="hidden" name="comment_post_ID" value="4137" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+								<p class="antispam-group antispam-group-q" style="clear: both; display: none;">
+			<label>Current ye@r <span class="required">*</span></label>
+			<input type="hidden" name="antspm-a" class="antispam-control antispam-control-a" value="2015">
+			<input type="text" name="antspm-q" class="antispam-control antispam-control-q" value="3.4">
+		</p>
+		<p class="antispam-group antispam-group-e" style="display: none;">
+			<label>Leave this field empty</label>
+			<input type="text" name="antspm-e-email-url-website" class="antispam-control antispam-control-e" value="">
+		</p>
+					</form>
+							</div><!-- #respond -->
+			
+
+<h3>Комментарии:</h3>
+<div class="main-list-comments">
+	<ul>
+			</ul>
+</div>
+<p class="nocomments">Комментариев пока нет, будьте первым.</p>			</div> 
+	  	</div>
+		<div class="span2 fix" style="height: 1274px;">
+	  		<div class="well">
+	<ul class="nav nav-tabs nav-stacked">
+		<li class="nav-header category">Категории</li>
+		<div class="menu">
+				
+
+
+			
+									<li>
+  						<a href="http://devcolibri.com/category/android"><div>Android <span style="color: #C2C2C2; font-size: 12px;">(36)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/application-server"><div>Application Server <span style="color: #C2C2C2; font-size: 12px;">(3)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/javaee"><div>Java EE <span style="color: #C2C2C2; font-size: 12px;">(18)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/javase"><div>Java SE <span style="color: #C2C2C2; font-size: 12px;">(39)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/javafx"><div>JavaFX 2 <span style="color: #C2C2C2; font-size: 12px;">(9)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/maven"><div>Maven <span style="color: #C2C2C2; font-size: 12px;">(11)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/spring"><div>Spring Framework <span style="color: #C2C2C2; font-size: 12px;">(15)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/vcs"><div>VCS <span style="color: #C2C2C2; font-size: 12px;">(3)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/database"><div>Базы данных <span style="color: #C2C2C2; font-size: 12px;">(11)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/news"><div>Новость блога <span style="color: #C2C2C2; font-size: 12px;">(2)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/testing"><div>Тестирование <span style="color: #C2C2C2; font-size: 12px;">(5)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/cribs"><div>Шпаргалки <span style="color: #C2C2C2; font-size: 12px;">(6)</span></div></a>
+					</li>
+									<li>
+  						<a href="http://devcolibri.com/category/idev"><div>Я Девелопер <span style="color: #C2C2C2; font-size: 12px;">(1)</span></div></a>
+					</li>
+				
+		</div>
+	</ul>
+</div>
+
+<!-- <div class="well">-->
+
+<div class="well" id="text-13">			<div class="textwidget"><div style="margin: -20px;">
+
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/openapi.js"></script>
+
+<!-- VK Widget -->
+<div id="vk_groups" style="height: 140px; width: 175px; background: none;"><iframe name="fXDd8694" frameborder="0" src="./Java 8 Killer Features. Часть 1_files/widget_community.html" width="175" height="200" scrolling="no" id="vkwidget1" style="overflow: hidden; height: 140px;"></iframe></div>
+<script type="text/javascript">
+VK.Widgets.Group("vk_groups", {mode: 1, width: "175", height: "400", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 45135634);
+</script>
+
+</div></div>
+		</div><div class="well" id="text-22">			<div class="textwidget"><div style="margin: -19px; background-color: #fff;">
+<a href="https://www.youtube.com/user/devcolibri" target="_blank">
+<img src="./Java 8 Killer Features. Часть 1_files/banner_right_java.png">
+</a>
+</div></div>
+		</div><div class="well" id="text-16">			<div class="textwidget"><div style="margin: -19px; background-color: #fff;">
+<a href="https://www.youtube.com/user/devcolibri" target="_blank">
+<img src="./Java 8 Killer Features. Часть 1_files/banner_right_android.png">
+</a>
+</div></div>
+		</div>	  	</div>
+	</div>
+		<div class="row-fluid">
+			<div class="well" id="footer">
+				<center>
+					<span style="font-size: 12px;">-- Все права защищены. © 2014 <a rel="author" target="_blank" style="color: #444;" href="https://plus.google.com/107220316082885802894">Александр Барчук</a></span><br>
+				</center>
+				
+			</div>
+		</div>
+
+	</div>
+
+    <script src="./Java 8 Killer Features. Часть 1_files/jquery-latest.js"></script>
+    <script src="./Java 8 Killer Features. Часть 1_files/bootstrap.min.js"></script>
+    <script src="./Java 8 Killer Features. Часть 1_files/jquery.shuffleLetters.js"></script>
+    <script src="./Java 8 Killer Features. Часть 1_files/name-site-script.js"></script>
+
+    <script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/share.js" charset="utf-8"></script>
+
+    <script src="./Java 8 Killer Features. Часть 1_files/jquery.min.js"></script> 	
+    <script src="./Java 8 Killer Features. Часть 1_files/comment.js"></script>
+
+    <script src="./Java 8 Killer Features. Часть 1_files/jquery.scrollUp.js"></script>
+
+<script>
+$(function () {
+     $(function () {
+          $.scrollUp({
+              animation: 'slide',
+	      scrollText: 'Наверх',
+         });
+     });
+});
+</script>
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  var q2w3_sidebar_1_options = { "sidebar" : "left-menu", "margin_top" : 10, "margin_bottom" : 0, "screen_max_width" : 0, "width_inherit" : false, "widgets" : ['text-22','text-16'] };
+  q2w3_sidebar(q2w3_sidebar_1_options);
+  setInterval(function () { q2w3_sidebar(q2w3_sidebar_1_options); }, 1500);
+});
+</script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shCore.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushClojure.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushFSharp.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushLatex.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushMatlabKey.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushObjC.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushR.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushScala.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/shBrushXml.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://devcolibri.com/cp/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://devcolibri.com/cp/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/anti-spam-3.4.js"></script>
+<script type="text/javascript" src="./Java 8 Killer Features. Часть 1_files/comment-reply.min.js"></script>
+
+
+
+
+<!-- POST VIEWS -->
+</div><a id="scrollUp" href="http://devcolibri.com/4137#top" title="Наверх" style="display: none; position: fixed; z-index: 2147483647;">Наверх</a></body></html>
